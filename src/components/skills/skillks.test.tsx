@@ -34,4 +34,20 @@ describe("Skills", () => {
     });
     expect(startLearningButton).not.toBeInTheDocument();
   });
+
+  // getting button which is appearing and disappearing - findBy - async method
+  // we can update timeout of findBy.. and findAllBy..
+  it("Start learning button is eventually displayed", async () => {
+    render(<Skills skills={skills} />);
+    const startLearningButton = await screen.findByRole(
+      "button",
+      {
+        name: /start learning/i,
+      },
+      {
+        timeout: 2000,
+      }
+    );
+    expect(startLearningButton).toBeInTheDocument();
+  });
 });
