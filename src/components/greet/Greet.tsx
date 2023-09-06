@@ -1,7 +1,5 @@
-type greetProps = {
-  name?: string;
-};
+import { greetProps } from "./greet.types";
 
 export const Greet = ({ name }: greetProps) => {
-  return <div>Hello {name} </div>;
+  return <div>Hello {name ? name : "Guest"} </div>;
 };

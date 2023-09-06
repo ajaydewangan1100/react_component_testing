@@ -13,4 +13,10 @@ describe("Greet", () => {
     const textElement = screen.getByText(/hello ajay/i);
     expect(textElement).toBeInTheDocument();
   });
+
+  test("render Hello with Guest", () => {
+    render(<Greet name="A" />);
+    const textElement = screen.getByText(/hello a/i);
+    expect(textElement).toBeInTheDocument();
+  });
 });
