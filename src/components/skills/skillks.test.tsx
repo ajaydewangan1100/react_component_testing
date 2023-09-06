@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { logRoles, render, screen } from "@testing-library/react";
 import { Skills } from "./Skills";
 
 describe("Skills", () => {
@@ -39,6 +39,41 @@ describe("Skills", () => {
   // we can update timeout of findBy.. and findAllBy..
   it("Start learning button is eventually displayed", async () => {
     render(<Skills skills={skills} />);
+    const startLearningButton = await screen.findByRole(
+      "button",
+      {
+        name: /start learning/i,
+      },
+      {
+        timeout: 2000,
+      }
+    );
+    expect(startLearningButton).toBeInTheDocument();
+  });
+
+  // Debugging - logRoles()
+  // screen.debug() - print two DOM trees - we can compare between them
+  it("Debug- screen.debug() -> gives 2 DOM tree we can compare", async () => {
+    render(<Skills skills={skills} />);
+    // screen.debug();
+    const startLearningButton = await screen.findByRole(
+      "button",
+      {
+        name: /start learning/i,
+      },
+      {
+        timeout: 2000,
+      }
+    );
+    // screen.debug();
+    expect(startLearningButton).toBeInTheDocument();
+  });
+
+  // logRoles() - give all present element with role
+  it("Debug logRoles() -> give all present element with role", async () => {
+    // store return object - "view" -> access roles by view.container
+    const view = render(<Skills skills={skills} />);
+    logRoles(view.container);
     const startLearningButton = await screen.findByRole(
       "button",
       {
