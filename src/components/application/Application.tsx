@@ -3,10 +3,10 @@ export const Application = () => {
     <>
       <h1>Job application form</h1>
       <h2>Section 1</h2>
-      {/* <p>All fields are mandatory</p>
+      <p>All fields are mandatory</p>
       <span title="close">X</span>
       <img src="https://via.placeholder.com/150" alt="a person with a laptop" />
-      <div data-testid="custom-element">Custom HTML element</div> */}
+      <div data-testid="custom-div-element1">Custom HTML element</div>
       <form>
         <div>
           <label htmlFor="name">Name</label>
@@ -14,7 +14,7 @@ export const Application = () => {
             type="text"
             id="name"
             placeholder="Fullname"
-            value="Vishwas"
+            value="Ajay"
             onChange={() => {}}
           />
         </div>

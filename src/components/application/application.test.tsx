@@ -67,4 +67,52 @@ describe("Application", () => {
     });
     expect(nameInput2Element).toBeInTheDocument();
   });
+
+  // getByPlaceholderText - video 21
+  it("render input - getByPlaceHolderText", () => {
+    render(<Application />);
+    // checking here name input box - getByPlaceholderText
+    const nameInputElement = screen.getByPlaceholderText(/fullname/i);
+    expect(nameInputElement).toBeInTheDocument();
+  });
+
+  // getByText - video 22
+  it("render paragraph - getByText", () => {
+    render(<Application />);
+    // checking here paragraph element - getByText
+    const paragraphElement = screen.getByText(/fields are mandatory/i);
+    expect(paragraphElement).toBeInTheDocument();
+  });
+
+  // getByDisplayValue - video 23
+  it("render name - getByDisplayValue", () => {
+    render(<Application />);
+    // checking here name input box - getByDisplayValue
+    const paragraphElement = screen.getByDisplayValue(/ajay/i);
+    expect(paragraphElement).toBeInTheDocument();
+  });
+
+  // getByAltText - video 24
+  it("render img element - getByAltText", () => {
+    render(<Application />);
+    // we can find <img>, <input>, <area> by  - getByAltText
+    const paragraphElement = screen.getByAltText(/person with a laptop/i);
+    expect(paragraphElement).toBeInTheDocument();
+  });
+
+  // getByTitle - video 25
+  it("render element - getByTitle", () => {
+    render(<Application />);
+    // find span via  - getByTitle
+    const paragraphElement = screen.getByTitle(/close/i);
+    expect(paragraphElement).toBeInTheDocument();
+  });
+
+  // getByTestId - video 26
+  it("render div element - getByTestId", () => {
+    render(<Application />);
+    // find span via  - getByTestId
+    const paragraphElement = screen.getByTestId(/custom-div-element1/i);
+    expect(paragraphElement).toBeInTheDocument();
+  });
 });
