@@ -16,4 +16,22 @@ describe("Skills", () => {
     expect(listItemElement).toHaveLength(skills.length);
     expect(listItemElement).toHaveLength(4);
   });
+
+  // getting button
+  it(`renders Login button`, () => {
+    render(<Skills skills={skills} />);
+    const loginButton = screen.getByRole("button", {
+      name: /login/i,
+    });
+    expect(loginButton).toBeInTheDocument();
+  });
+
+  // getting button element which is not present on rendering time - queryBy
+  it(`Start learning button is not rendered`, () => {
+    render(<Skills skills={skills} />);
+    const startLearningButton = screen.queryByRole("button", {
+      name: /start learning/i,
+    });
+    expect(startLearningButton).not.toBeInTheDocument();
+  });
 });
