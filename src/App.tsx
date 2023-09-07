@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Application } from "./components/application/Application";
 import { Skills } from "./components/skills/Skills";
+import { Counter } from "./components/counter/Counter";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       {/* video 26 */}
       <Skills skills={["NodeJS", "ExpressJS"]} />
       <hr />
-      {/*  */}
+      {/* User Interactions - video 36 */}
+      <Counter />
     </div>
   );
 }
