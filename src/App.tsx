@@ -4,6 +4,8 @@ import "./App.css";
 import { Application } from "./components/application/Application";
 import { Skills } from "./components/skills/Skills";
 import { Counter } from "./components/counter/Counter";
+import { AppProviders } from "./providers/app-providers";
+import { MuiMode } from "./components/mui/mui-mode";
 
 function App() {
   return (
@@ -16,6 +18,13 @@ function App() {
       <hr />
       {/* User Interactions - video 36 */}
       <Counter />
+      <hr />
+      {/* rendering provider - video 38 */}
+      <AppProviders>
+        <div className="App">
+          <MuiMode />
+        </div>
+      </AppProviders>
       <hr />
     </div>
   );
