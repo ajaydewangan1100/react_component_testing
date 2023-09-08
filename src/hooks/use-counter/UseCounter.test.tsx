@@ -1,4 +1,4 @@
-import { render, renderHook } from "@testing-library/react";
+import { act, render, renderHook } from "@testing-library/react";
 import { UserCounter } from "./UseCounter";
 
 describe("Custom Hook - useCounter", () => {
@@ -20,9 +20,31 @@ describe("Custom Hook - useCounter", () => {
   it("should accept and render same initial count", () => {
     const { result } = renderHook(UserCounter, {
       initialProps: {
-        initialCount: 10,
+        initialCount: 13,
       },
     });
     expect(result.current.count).toBe(13);
+  });
+
+  // testing with increment and decrement - with and without props
+  it("should increment count, (with props)", () => {
+    // with props
+    const { result } = renderHook(UserCounter, {
+      initialProps: {
+        initialCount: 20,
+      },
+    });
+    // wrapping into act()
+    act(() => result.current.increment());
+    expect(result.current.count).toBe(21);
+  });
+
+  // without props decrement
+  it("should decrement count, (without props)", () => {
+    // with props
+    const { result } = renderHook(UserCounter);
+    // wrapping into act()
+    act(() => result.current.decrement());
+    expect(result.current.count).toBe(-1);
   });
 });
