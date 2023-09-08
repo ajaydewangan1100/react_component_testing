@@ -16,6 +16,7 @@ function App() {
       <hr />
       {/* User Interactions - video 36 */}
       <Counter />
+      <hr />
     </div>
   );
 }

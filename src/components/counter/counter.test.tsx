@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, logRoles, render, screen } from "@testing-library/react";
 import { Counter } from "./Counter";
 import userEvent from "@testing-library/user-event";
 
@@ -47,5 +47,61 @@ describe("Counter", () => {
     await userEvent.click(incrementButton);
     const countElement = screen.getByRole("heading");
     expect(countElement).toHaveTextContent("2");
+  });
+
+  // test input field and heading updation - via fireEvent
+  it("fireEvent - renders a count of 10 after clicking the set button", () => {
+    const view = render(<Counter />);
+    // logRoles(view.container);
+    const amountInputElement = screen.getByRole("spinbutton");
+    // via fireEvent
+    fireEvent.change(amountInputElement, { target: { value: 10 } });
+    expect(amountInputElement).toHaveValue(10);
+
+    const setButton = screen.getByRole("button", {
+      name: /set/i,
+    });
+    fireEvent.click(setButton);
+
+    const countElement = screen.getByRole("heading");
+    expect(countElement).toHaveTextContent("10");
+  });
+
+  // test input and counter heading - via userEvent
+  it("userEvent - renders a count of 10 after clicking the set button", async () => {
+    const view = render(<Counter />);
+    logRoles(view.container);
+    const amountInputElement = screen.getByRole("spinbutton");
+    // via userEvent
+    await userEvent.type(amountInputElement, "10");
+    expect(amountInputElement).toHaveValue(10);
+
+    const setButton = screen.getByRole("button", {
+      name: /set/i,
+    });
+    await userEvent.click(setButton);
+
+    const countElement = screen.getByRole("heading");
+    expect(countElement).toHaveTextContent("10");
+  });
+
+  // userEvent - now we write test for focus order - which is not possible with fireEvent
+  it("userEvent - elements focus on right order", async () => {
+    const view = render(<Counter />);
+    logRoles(view.container);
+    const amountInputElement = screen.getByRole("spinbutton");
+    const setButton = screen.getByRole("button", {
+      name: /set/i,
+    });
+    const incrementButton = screen.getByRole("button", {
+      name: /increment/i,
+    });
+
+    await userEvent.tab();
+    expect(incrementButton).toHaveFocus();
+    await userEvent.tab();
+    expect(amountInputElement).toHaveFocus();
+    await userEvent.tab();
+    expect(setButton).toHaveFocus();
   });
 });
